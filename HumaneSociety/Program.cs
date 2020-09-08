@@ -10,6 +10,7 @@ namespace HumaneSociety
     {
         static void Main(string[] args)
         {
+            //Good_job!
             PointOfEntry.Run();
         }
     }
