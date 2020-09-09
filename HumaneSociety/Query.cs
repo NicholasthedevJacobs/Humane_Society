@@ -258,8 +258,17 @@ namespace HumaneSociety
 
             Animal animal = null;
             try
-            {
-                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            {//1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault(); 
+                animal.CategoryId = Convert.ToInt32(updates[1]);
+                animal.Name = updates[2];
+                animal.Age = Convert.ToInt32(updates[3]);
+                animal.Demeanor = updates[4];
+                animal.KidFriendly = Convert.ToBoolean(updates[5]);
+                animal.PetFriendly = Convert.ToBoolean(updates[6]);
+                animal.Weight = Convert.ToInt32(updates[7]);
+                animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
+                db.SubmitChanges();
             }
             catch(InvalidOperationException e)
             {
@@ -267,20 +276,7 @@ namespace HumaneSociety
                 Console.WriteLine("No update has been made.");
                 return;
             }
-            //1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
-            animal.CategoryId = Convert.ToInt32(updates[1]);
-            animal.Name = updates[2];
-            animal.Age = Convert.ToInt32(updates[3]);
-            animal.Demeanor = updates[4];
-            animal.KidFriendly = Convert.ToBoolean(updates[5]);
-            animal.PetFriendly = Convert.ToBoolean(updates[6]);
-            animal.Weight = Convert.ToInt32(updates[7]);
-            animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
-            db.SubmitChanges();
-            
-
         }
-
         internal static void RemoveAnimal(Animal animal)
         {
             throw new NotImplementedException();
