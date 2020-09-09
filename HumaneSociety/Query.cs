@@ -172,11 +172,11 @@ namespace HumaneSociety
             }
             else if (crudOperation == "delete")
             {
-                
+                db.Employees.DeleteOnSubmit(employee);
             }
             else if (crudOperation == "read")
             {
-
+               
             }
             else if (crudOperation == "update")
             { 
