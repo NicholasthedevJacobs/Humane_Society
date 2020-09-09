@@ -168,9 +168,9 @@ namespace HumaneSociety
         {
             if (crudOperation == "create")
             {
-                db.Employees.InsertOnSubmit(employee);
                 try 
                 {
+                    db.Employees.InsertOnSubmit(employee);
                     db.SubmitChanges();
                 }
                 catch (Exception e)
@@ -180,18 +180,16 @@ namespace HumaneSociety
             }
             else if (crudOperation == "delete")
             {
-
-                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
-                db.Employees.DeleteOnSubmit(employee);
                 try
                 {
+                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    db.Employees.DeleteOnSubmit(employee);
                     db.SubmitChanges();
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
-
             }
             else if (crudOperation == "read")
             {
@@ -206,7 +204,7 @@ namespace HumaneSociety
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            db.Animals.InsertOnSubmit(animal);
         }
 
         internal static Animal GetAnimalByID(int id)
