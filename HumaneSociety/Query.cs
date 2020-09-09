@@ -182,6 +182,7 @@ namespace HumaneSociety
             {
                 try
                 { 
+
                     Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
                     db.Employees.DeleteOnSubmit(employee);
                     db.SubmitChanges();
@@ -190,7 +191,6 @@ namespace HumaneSociety
                 {
                     throw new Exception(e.Message);
                 }
-
             }
             else if (crudOperation == "read")
             {
@@ -229,7 +229,16 @@ namespace HumaneSociety
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                db.Animals.InsertOnSubmit(animal);
+                db.SubmitChanges();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            
         }
 
         internal static Animal GetAnimalByID(int id)
