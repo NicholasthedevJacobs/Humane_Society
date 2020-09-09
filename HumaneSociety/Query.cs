@@ -241,7 +241,15 @@ namespace HumaneSociety
 
         internal static Animal GetAnimalByID(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Animal animal = db.Animals.Where(a => a.AnimalId == id).FirstOrDefault();
+                return animal;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
