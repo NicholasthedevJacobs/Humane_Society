@@ -175,16 +175,22 @@ namespace HumaneSociety
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
-                    db.SubmitChanges();
+                    throw new Exception(e.Message);
                 }
             }
             else if (crudOperation == "delete")
             {
 
-                Employee employeeFromDB =;
-
+                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
                 db.Employees.DeleteOnSubmit(employee);
+                try
+                {
+                    db.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
 
             }
             else if (crudOperation == "read")
