@@ -258,7 +258,8 @@ namespace HumaneSociety
             Animal animal = null;
             try
             {
-                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();               
+                db.SubmitChanges();
             }
             catch(InvalidOperationException e)
             {
@@ -266,6 +267,7 @@ namespace HumaneSociety
                 Console.WriteLine("No update has been made.");
                 return;
             }
+
             foreach(KeyValuePair<int, string> update in updates)
             {
                 switch (updates)
@@ -288,8 +290,8 @@ namespace HumaneSociety
             db.SubmitChanges();
             
 
-        }
 
+        }
         internal static void RemoveAnimal(Animal animal)
         {
             try
@@ -382,7 +384,17 @@ namespace HumaneSociety
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Shot shot = db.Shots.Where(a => a.Name == shotName).FirstOrDefault();
+                AnimalShot animalShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId && a.ShotId == shot.ShotId).FirstOrDefault();
+                animalShot.DateReceived = DateTime.Now;
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }
