@@ -253,8 +253,16 @@ namespace HumaneSociety
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
+        {
+            try
+            {
+                Animal animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                animal.Name = updates[1]
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -332,7 +340,8 @@ namespace HumaneSociety
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            throw new NotImplementedException();
+            IQueryable<AnimalShot> shots = db.AnimalShots.Where(a => a.Animal == animal);
+            return shots;
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
