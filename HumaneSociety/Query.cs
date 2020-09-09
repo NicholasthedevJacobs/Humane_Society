@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -253,8 +254,29 @@ namespace HumaneSociety
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
+        {
+            Animal animal = null;
+            try
+            {
+                animal = db.Animals.Where(a => a.AnimalId == animalId).SingleOrDefault();
+            }
+            catch(InvalidOperationException e)
+            {
+                Console.WriteLine("No animals with that ID exist.");
+                Console.WriteLine("No update has been made.");
+                return;
+            }
+            //1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
+            animal.CategoryId = Convert.ToInt32(updates[1]);
+            animal.Name = updates[2];
+            animal.Age = Convert.ToInt32(updates[3]);
+            animal.Demeanor = updates[4];
+            animal.KidFriendly = Convert.ToBoolean(updates[5]);
+            animal.PetFriendly = Convert.ToBoolean(updates[6]);
+            animal.Weight = Convert.ToInt32(updates[7]);
+            animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
+            db.SubmitChanges();
+            
         }
 
         internal static void RemoveAnimal(Animal animal)
