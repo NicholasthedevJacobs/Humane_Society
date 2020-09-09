@@ -138,7 +138,7 @@ namespace HumaneSociety
 
             if (employeeFromDb == null)
             {
-                throw new NullReferenceException();
+                throw new NullReferenceException(); 
             }
             else
             {
@@ -166,7 +166,22 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-            throw new NotImplementedException();
+            if (crudOperation == "create")
+            {
+                db.Employees.InsertOnSubmit(employee);
+            }
+            else if (crudOperation == "delete")
+            {
+                
+            }
+            else if (crudOperation == "read")
+            {
+
+            }
+            else if (crudOperation == "update")
+            { 
+            }
+            //throw new NotImplementedException();
         }
 
         // TODO: Animal CRUD Operations
