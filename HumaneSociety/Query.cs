@@ -182,7 +182,6 @@ namespace HumaneSociety
             {
                 try
                 { 
-
                     Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
                     db.Employees.DeleteOnSubmit(employee);
                     db.SubmitChanges();
@@ -223,7 +222,6 @@ namespace HumaneSociety
                     throw new Exception(e.Message);
                 }
             }
-            //throw new NotImplementedException();
         }
 
         // TODO: Animal CRUD Operations
@@ -265,12 +263,14 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-            throw new NotImplementedException();
+           int categoryID = Convert.ToInt32(db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId));
+            return categoryID;
         }
         
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            Room room = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            return room;
         }
         
         internal static int GetDietPlanId(string dietPlanName)
