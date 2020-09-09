@@ -194,7 +194,16 @@ namespace HumaneSociety
             }
             else if (crudOperation == "read")
             {
-               
+                try
+                {
+                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    Console.WriteLine(employeeFromDB.FirstName + "\n" + employeeFromDB.LastName + "\n" + employeeFromDB.UserName + "\n" + employeeFromDB.Password + "\n" + employeeFromDB.EmployeeNumber + "\n" + employeeFromDB.Email);
+                    db.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+                }
             }
             else if (crudOperation == "update")
             { 
@@ -212,7 +221,6 @@ namespace HumaneSociety
                 catch (Exception e)
                 {
                     throw new Exception(e.Message);
-
                 }
             }
             //throw new NotImplementedException();
