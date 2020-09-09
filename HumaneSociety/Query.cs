@@ -224,7 +224,6 @@ namespace HumaneSociety
                 }
             }
         }
-
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
@@ -238,7 +237,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }           
         }
-
         internal static Animal GetAnimalByID(int id)
         {
             try
@@ -251,7 +249,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
 
@@ -356,7 +353,20 @@ namespace HumaneSociety
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
-            throw new NotImplementedException();
+            try
+            {
+                client = db.Clients.Where(a => a == client).FirstOrDefault();
+                animal = db.Animals.Where(a => a == animal).FirstOrDefault();
+                Adoption adoption = db.Adoptions.Where(a => a.ClientId == client.ClientId && a.AnimalId == animal.AnimalId).FirstOrDefault();
+                animal.AdoptionStatus = "This animal was adopted by " + client.FirstName + "" + client.LastName;
+                adoption.ApprovalStatus = "pending";
+                adoption.PaymentCollected = true;
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
@@ -367,9 +377,25 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (isAdopted == true)
+                {
+                    adoption.ApprovalStatus = "approved";
+                    adoption.PaymentCollected = true;
+                }
+                else
+                {
+                    adoption.ApprovalStatus = "pending";
+                    adoption.PaymentCollected = false;
+                }
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
-
         internal static void RemoveAdoption(int animalId, int clientId)
         {
             try
@@ -382,7 +408,6 @@ namespace HumaneSociety
             {
                 throw new Exception(e.Message);
             }
-           
         }
 
         // TODO: Shots Stuff
