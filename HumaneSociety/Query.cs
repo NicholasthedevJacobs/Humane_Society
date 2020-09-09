@@ -255,10 +255,11 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
+
             Animal animal = null;
             try
             {
-                animal = db.Animals.Where(a => a.AnimalId == animalId).SingleOrDefault();
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             }
             catch(InvalidOperationException e)
             {
@@ -277,6 +278,7 @@ namespace HumaneSociety
             animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
             db.SubmitChanges();
             
+
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -319,7 +321,15 @@ namespace HumaneSociety
         
         internal static int GetDietPlanId(string dietPlanName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                int dietPlanID = Convert.ToInt32(db.DietPlans.Where(a => a.Name == dietPlanName).Select(a => a.DietPlanId));
+                return dietPlanID;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         // TODO: Adoption CRUD Operations
@@ -330,7 +340,8 @@ namespace HumaneSociety
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            IQueryable<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending");
+            return pendingAdoptions;
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
@@ -346,7 +357,8 @@ namespace HumaneSociety
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            throw new NotImplementedException();
+            IQueryable<AnimalShot> shots = db.AnimalShots.Where(a => a.Animal == animal);
+            return shots;
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
