@@ -267,27 +267,36 @@ namespace HumaneSociety
 
             foreach(KeyValuePair<int, string> update in updates)
             {
-                switch (updates)
+                switch (update.Key)
                 {
-                    case "1":
-                        animal.CategoryId = Convert.ToInt32(updates[1]);
+                    case 1:
+                        animal.CategoryId = Convert.ToInt32(update.Value);
+                        break;
+                    case 2:
+                        animal.Name = update.Value;
+                        break;
+                    case 3:
+                        animal.Age = Convert.ToInt32(update.Value);
+                        break;
+                    case 4:
+                        animal.Demeanor = update.Value;
+                        break;
+                    case 5:
+                        animal.KidFriendly = Convert.ToBoolean(update.Value);
+                        break;
+                    case 6:
+                        animal.PetFriendly = Convert.ToBoolean(update.Value);
+                        break;
+                    case 7:
+                        animal.Weight = Convert.ToInt32(update.Value);
+                        break;
+                    default:
+                        Console.WriteLine("Enter an appropriate value.");
                         break;
                 }
-
+                db.Animals.InsertOnSubmit(animal);
+                db.SubmitChanges();
             }
-            //1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
-            animal.CategoryId = Convert.ToInt32(updates[1]);
-            animal.Name = updates[2];
-            animal.Age = Convert.ToInt32(updates[3]);
-            animal.Demeanor = updates[4];
-            animal.KidFriendly = Convert.ToBoolean(updates[5]);
-            animal.PetFriendly = Convert.ToBoolean(updates[6]);
-            animal.Weight = Convert.ToInt32(updates[7]);
-            animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
-            db.SubmitChanges();
-            
-
-
         }
         internal static void RemoveAnimal(Animal animal)
         {
