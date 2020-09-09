@@ -263,14 +263,28 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-           int categoryID = Convert.ToInt32(db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId));
-            return categoryID;
+            try
+            {
+                int categoryID = Convert.ToInt32(db.Categories.Where(a => a.Name == categoryName).Select(a => a.CategoryId));
+                return categoryID;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
-        
+
         internal static Room GetRoom(int animalId)
         {
-            Room room = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
-            return room;
+            try
+            { 
+                Room room = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                return room;
+            }
+             catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         
         internal static int GetDietPlanId(string dietPlanName)
