@@ -266,6 +266,16 @@ namespace HumaneSociety
                 Console.WriteLine("No update has been made.");
                 return;
             }
+            foreach(KeyValuePair<int, string> update in updates)
+            {
+                switch (updates)
+                {
+                    case "1":
+                        animal.CategoryId = Convert.ToInt32(updates[1]);
+                        break;
+                }
+
+            }
             //1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
             animal.CategoryId = Convert.ToInt32(updates[1]);
             animal.Name = updates[2];
