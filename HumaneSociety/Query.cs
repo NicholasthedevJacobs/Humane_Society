@@ -168,9 +168,9 @@ namespace HumaneSociety
         {
             if (crudOperation == "create")
             {
-                db.Employees.InsertOnSubmit(employee);
                 try 
                 {
+                    db.Employees.InsertOnSubmit(employee);
                     db.SubmitChanges();
                 }
                 catch (Exception e)
@@ -180,16 +180,15 @@ namespace HumaneSociety
             }
             else if (crudOperation == "delete")
             {
-
-                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
-                db.Employees.DeleteOnSubmit(employee);
                 try
-                {
+                { 
+                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    db.Employees.DeleteOnSubmit(employee);
                     db.SubmitChanges();
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    throw new Exception(e.Message);
                 }
 
             }
@@ -199,6 +198,22 @@ namespace HumaneSociety
             }
             else if (crudOperation == "update")
             { 
+                try
+                {
+                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                    employeeFromDB.FirstName = employee.FirstName;
+                    employeeFromDB.LastName = employee.LastName;
+                    employeeFromDB.UserName = employee.UserName;
+                    employeeFromDB.UserName = employee.Password;
+                    employeeFromDB.EmployeeNumber = employee.EmployeeNumber;
+                    employeeFromDB.Email = employee.Email;
+                    db.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message);
+
+                }
             }
             //throw new NotImplementedException();
         }
