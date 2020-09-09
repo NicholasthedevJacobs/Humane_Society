@@ -169,10 +169,19 @@ namespace HumaneSociety
             if (crudOperation == "create")
             {
                 db.Employees.InsertOnSubmit(employee);
+                try 
+                {
+                    db.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    db.SubmitChanges();
+                }
             }
             else if (crudOperation == "delete")
             {
-                
+                Employee employeeFromDB =
             }
             else if (crudOperation == "read")
             {
