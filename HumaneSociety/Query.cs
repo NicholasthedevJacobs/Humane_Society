@@ -236,8 +236,7 @@ namespace HumaneSociety
             catch(Exception e)
             {
                 throw new Exception(e.Message);
-            }
-            
+            }           
         }
 
         internal static Animal GetAnimalByID(int id)
@@ -279,7 +278,16 @@ namespace HumaneSociety
         }
         internal static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Animal animalToRemove = db.Animals.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
+                db.Animals.DeleteOnSubmit(animal);
+                db.SubmitChanges();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         
         // TODO: Animal Multi-Trait Search
