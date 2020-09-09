@@ -257,16 +257,8 @@ namespace HumaneSociety
 
             Animal animal = null;
             try
-            {//1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
-                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault(); 
-                animal.CategoryId = Convert.ToInt32(updates[1]);
-                animal.Name = updates[2];
-                animal.Age = Convert.ToInt32(updates[3]);
-                animal.Demeanor = updates[4];
-                animal.KidFriendly = Convert.ToBoolean(updates[5]);
-                animal.PetFriendly = Convert.ToBoolean(updates[6]);
-                animal.Weight = Convert.ToInt32(updates[7]);
-                animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
+            {
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();               
                 db.SubmitChanges();
             }
             catch(InvalidOperationException e)
@@ -275,6 +267,30 @@ namespace HumaneSociety
                 Console.WriteLine("No update has been made.");
                 return;
             }
+
+            foreach(KeyValuePair<int, string> update in updates)
+            {
+                switch (updates)
+                {
+                    case "1":
+                        animal.CategoryId = Convert.ToInt32(updates[1]);
+                        break;
+                }
+
+            }
+            //1. Category", "2. Name", "3. Age", "4. Demeanor", "5. Kid friendly", "6. Pet friendly", "7. Weight", "8. ID", "9. Finished" };
+            animal.CategoryId = Convert.ToInt32(updates[1]);
+            animal.Name = updates[2];
+            animal.Age = Convert.ToInt32(updates[3]);
+            animal.Demeanor = updates[4];
+            animal.KidFriendly = Convert.ToBoolean(updates[5]);
+            animal.PetFriendly = Convert.ToBoolean(updates[6]);
+            animal.Weight = Convert.ToInt32(updates[7]);
+            animal.AnimalId = Convert.ToInt32(updates[8]);//maybe dont need to have this one here.  Id gets auto created.
+            db.SubmitChanges();
+            
+
+
         }
         internal static void RemoveAnimal(Animal animal)
         {
