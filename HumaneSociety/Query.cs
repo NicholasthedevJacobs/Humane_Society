@@ -179,11 +179,6 @@ namespace HumaneSociety
             {
                 UpdateEmployeeQueries(employee, crudOperation);
             }
-            else
-            {
-                Console.WriteLine("Please enther valid input.");
-                //RunEmployeeQueries(employee, crudOperation);   **SHOULD WE INCLUDE RECURSION HERE?**NEVIN
-            }
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
         {
@@ -476,13 +471,7 @@ namespace HumaneSociety
         }
         internal static void ImportDataFromCSV()
         {
-            List<Animal> vars = new List<Animal>();
-            {
-                "Murdock", 15, 3   "skittish"  1   0   "male"  "adopted"    null   null     null
-                "Loki" 18  4   "cuddly"    1   1   "male"  "adopted"    null   null     null
-                "Rowdy"    20  9   "deceased"  1   1   "male"  "not adopted"    null   null     null
 
-            }
         }
     }
 }
