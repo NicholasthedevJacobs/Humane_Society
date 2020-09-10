@@ -169,11 +169,11 @@ namespace HumaneSociety
         {
             if (crudOperation == "create")
             {
-                
+                CreateEmployeeQueries(employee, crudOperation);
             }
             else if (crudOperation == "delete")
             {
-                
+                DeleteEmployeeQueries(employee, crudOperation);
             }
             else if (crudOperation == "read")
             {
@@ -184,6 +184,32 @@ namespace HumaneSociety
                 UpdateEmployeeQueries(employee, crudOperation);
             }
         }
+        internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                db.Employees.InsertOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        internal static void DeleteEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                db.Employees.DeleteOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         internal static void ReadEmployeeQueries(Employee employee, string crudOperation)
         {
             try
