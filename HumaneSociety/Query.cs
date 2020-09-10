@@ -268,11 +268,21 @@ namespace HumaneSociety
                 animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
                 db.SubmitChanges();
             }
+<<<<<<< HEAD
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
             foreach (KeyValuePair<int, string> update in updates)
+=======
+            catch(InvalidCastException e)
+            {
+                Console.WriteLine("No animals with that ID exist.");
+                Console.WriteLine("No update has been made.");
+                return;
+            }
+            foreach(KeyValuePair<int, string> update in updates)
+>>>>>>> 7ebf0bd07e67f36ada9c6e77ef57d0f6b11f2a60
             {
                 switch (update.Key)
                 {
