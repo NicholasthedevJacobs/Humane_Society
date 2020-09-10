@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -160,11 +161,6 @@ namespace HumaneSociety
 
             return employeeWithUserName != null;
         }
-
-
-        //// TODO Items: ////
-
-        // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
             if (crudOperation == "create")
@@ -209,10 +205,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> bf35de182d274563b01de98f7933a7edaa94c358
         internal static void ReadEmployeeQueries(Employee employee, string crudOperation)
         {
             try
@@ -244,7 +236,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
             try
@@ -271,8 +262,17 @@ namespace HumaneSociety
         }
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            Animal animal = GetAnimalByID(animalId);
-            foreach(KeyValuePair<int, string> update in updates)
+            Animal animal = null;
+            try
+            {
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+            foreach (KeyValuePair<int, string> update in updates)
             {
                 switch (update.Key)
                 {
@@ -301,9 +301,7 @@ namespace HumaneSociety
                         Console.WriteLine("Enter an appropriate value.");
                         break;
                 }
-
             }
-
             db.SubmitChanges();
         }
         internal static void RemoveAnimal(Animal animal)
@@ -319,8 +317,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        
-        // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
             IQueryable<Animal> animalSearch = db.Animals;
@@ -356,8 +352,6 @@ namespace HumaneSociety
             }
             return animalSearch;
         }
-         
-        // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
             try
@@ -370,7 +364,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         internal static Room GetRoom(int animalId)
         {
             try
@@ -383,7 +376,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        
         internal static int GetDietPlanId(string dietPlanName)
         {
             try
@@ -396,8 +388,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
-        // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
             try
@@ -415,13 +405,11 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
             IQueryable<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending");
             return pendingAdoptions;
         }
-
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
             try
@@ -456,13 +444,11 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
             IQueryable<AnimalShot> shots = db.AnimalShots.Where(a => a.Animal == animal);
             return shots;
         }
-
         internal static void UpdateShot(string shotName, Animal animal)
         {
             try
