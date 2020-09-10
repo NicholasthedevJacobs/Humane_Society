@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace HumaneSociety
 {
@@ -179,6 +181,11 @@ namespace HumaneSociety
             {
                 UpdateEmployeeQueries(employee, crudOperation);
             }
+            else
+            {
+                Console.WriteLine("Please enther valid input.");
+            }
+
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
         {
@@ -469,9 +476,26 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        internal static void ImportDataFromCSV()
+        internal static void ImportDataFromCSV(string path)
         {
-
-        }
+            path = "G:/Nicob IV/Documents/Humane Society/animals.csv";
+            string[] lines = System.IO.File.ReadAllLines(path);
+            foreach(string line in lines)
+            {
+                string[] columns = line.Split(',');
+                foreach(string column in columns)
+                {
+                    Animal animal = new Animal();
+                    animal.Name = Convert.ToString(column[1]);
+                    animal.Weight = Convert.ToInt32(column[1]);
+                    animal.Age = Convert.ToInt32(column[2]);
+                    animal.Demeanor = Convert.ToString(column[3]);
+                    animal.KidFriendly = Convert.ToBoolean(column[4]);
+                    animal.PetFriendly = Convert.ToBoolean(column[5]);
+                    animal.Gender = Convert.ToString(column[6]);
+                    animal.AdoptionStatus = Convert.ToString(column[7]);
+                }
+            }
+        }               
     }
 }
