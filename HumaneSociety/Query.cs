@@ -281,6 +281,7 @@ namespace HumaneSociety
                         Console.WriteLine("Enter an appropriate value.");
                         break;
                 }
+
             }
             db.Animals.InsertOnSubmit(animal);
             db.SubmitChanges();
@@ -405,7 +406,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
