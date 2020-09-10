@@ -169,59 +169,44 @@ namespace HumaneSociety
         {
             if (crudOperation == "create")
             {
-                try 
-                {
-                    db.Employees.InsertOnSubmit(employee);
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
+                CreateEmployeeQueries(employee, crudOperation);
             }
             else if (crudOperation == "delete")
             {
-                try
-                { 
-                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
-                    db.Employees.DeleteOnSubmit(employee);
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
+                DeleteEmployeeQueries(employee, crudOperation);
             }
             else if (crudOperation == "read")
             {
-                try
-                {
-                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
-                    Console.WriteLine(employeeFromDB.FirstName + "\n" + employeeFromDB.LastName + "\n" + employeeFromDB.UserName + "\n" + employeeFromDB.Password + "\n" + employeeFromDB.EmployeeNumber + "\n" + employeeFromDB.Email);
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
+
             }
             else if (crudOperation == "update")
             { 
-                try
-                {
-                    Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
-                    employeeFromDB.FirstName = employee.FirstName;
-                    employeeFromDB.LastName = employee.LastName;
-                    employeeFromDB.UserName = employee.UserName;
-                    employeeFromDB.UserName = employee.Password;
-                    employeeFromDB.EmployeeNumber = employee.EmployeeNumber;
-                    employeeFromDB.Email = employee.Email;
-                    db.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    throw new Exception(e.Message);
-                }
+
+            }
+        }
+        internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                db.Employees.InsertOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        internal static void DeleteEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                db.Employees.DeleteOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
         // TODO: Animal CRUD Operations
