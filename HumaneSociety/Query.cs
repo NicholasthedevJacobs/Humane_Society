@@ -466,7 +466,6 @@ namespace HumaneSociety
                 //AnimalShot animalShots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId && a.ShotId == shot.ShotId).FirstOrDefault();
                 animalShot.ShotId = shot.ShotId;
                 animalShot.DateReceived = DateTime.Now;
-
                 db.AnimalShots.InsertOnSubmit(animalShot);
                 db.SubmitChanges();
             }
@@ -474,6 +473,16 @@ namespace HumaneSociety
             {
                 throw new Exception(e.Message);
             }
-        } 
+        }
+        internal static void ImportDataFromCSV()
+        {
+            List<Animal> vars = new List<Animal>();
+            {
+                "Murdock", 15, 3   "skittish"  1   0   "male"  "adopted"    null   null     null
+                "Loki" 18  4   "cuddly"    1   1   "male"  "adopted"    null   null     null
+                "Rowdy"    20  9   "deceased"  1   1   "male"  "not adopted"    null   null     null
+
+            }
+        }
     }
 }
