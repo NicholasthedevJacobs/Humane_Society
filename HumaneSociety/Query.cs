@@ -209,6 +209,10 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> bf35de182d274563b01de98f7933a7edaa94c358
         internal static void ReadEmployeeQueries(Employee employee, string crudOperation)
         {
             try
