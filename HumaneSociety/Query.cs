@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
 
 namespace HumaneSociety
 {
@@ -182,7 +184,6 @@ namespace HumaneSociety
             else
             {
                 Console.WriteLine("Please enther valid input.");
-                //RunEmployeeQueries(employee, crudOperation);   **SHOULD WE INCLUDE RECURSION HERE?**NEVIN
             }
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
@@ -474,15 +475,20 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-        internal static void ImportDataFromCSV()
+        internal static void ImportDataFromCSV(string path)
         {
-            List<Animal> vars = new List<Animal>();
-            {
-                "Murdock", 15, 3   "skittish"  1   0   "male"  "adopted"    null   null     null
-                "Loki" 18  4   "cuddly"    1   1   "male"  "adopted"    null   null     null
-                "Rowdy"    20  9   "deceased"  1   1   "male"  "not adopted"    null   null     null
+            Animal animal = new Animal();
+            path = "G:/Nicob IV/Documents/Humane Society/animals.csv";
 
+            string[] lines = System.IO.File.ReadAllLines(path);
+            foreach(string line in lines)
+            {
+                string[] columns = line.Split(',');
+                foreach(string column in columns)
+                {
+                    AddAnimal(animal);
+                }
             }
-        }
+        }               
     }
 }
