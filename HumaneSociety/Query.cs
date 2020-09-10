@@ -185,6 +185,7 @@ namespace HumaneSociety
             {
                 Console.WriteLine("Please enther valid input.");
             }
+
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
         {
@@ -477,16 +478,22 @@ namespace HumaneSociety
         }
         internal static void ImportDataFromCSV(string path)
         {
-            Animal animal = new Animal();
             path = "G:/Nicob IV/Documents/Humane Society/animals.csv";
-
             string[] lines = System.IO.File.ReadAllLines(path);
             foreach(string line in lines)
             {
                 string[] columns = line.Split(',');
                 foreach(string column in columns)
                 {
-                    AddAnimal(animal);
+                    Animal animal = new Animal();
+                    animal.Name = Convert.ToString(column[1]);
+                    animal.Weight = Convert.ToInt32(column[1]);
+                    animal.Age = Convert.ToInt32(column[2]);
+                    animal.Demeanor = Convert.ToString(column[3]);
+                    animal.KidFriendly = Convert.ToBoolean(column[4]);
+                    animal.PetFriendly = Convert.ToBoolean(column[5]);
+                    animal.Gender = Convert.ToString(column[6]);
+                    animal.AdoptionStatus = Convert.ToString(column[7]);
                 }
             }
         }               
