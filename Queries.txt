@@ -31,12 +31,12 @@ INSERT INTO Rooms VALUES (8, null);
 INSERT INTO Rooms VALUES (9, null);
 INSERT INTO Rooms VALUES (10, null);
 
-ANIMALS
-INSERT INTO Animals VALUES('Buster', 35, 2, 'Friendly', 1, 1, 'Male', 'Not Adopted', 1, 2, 1);
-INSERT INTO Animals VALUES('Cat', 8, 7, 'Mean', 1, 0, 'Female', 'Adopted', 2, 4, 2);
-INSERT INTO Animals VALUES('Tweety', 1, 8, 'Friendly', 0, 1, 'Not Gendered', 'Not Adopted', 3, 5, 3);
-INSERT INTO Animals VALUES('Scalyguy', 4, 12, 'Friendly', 1, 1, 'Male', 'Not Adopted', 4, 6, 4);
-INSERT INTO Animals VALUES('Porky', 48, 5, 'Friendly', 1, 1, 'Female', 'Adopted', 5, 7, 5);
+ANIMALS  
+INSERT INTO Animals VALUES('Buster', 35, 2, 'Friendly', 1, 1, 'Male', 'Not Adopted', 16, 2, 1);
+INSERT INTO Animals VALUES('Cat', 8, 7, 'Mean', 1, 0, 'Female', 'Adopted', 17, 4, 2);
+INSERT INTO Animals VALUES('Tweety', 1, 8, 'Friendly', 0, 1, 'Not Gendered', 'Not Adopted', 18, 5, 3);
+INSERT INTO Animals VALUES('Scalyguy', 4, 12, 'Friendly', 1, 1, 'Male', 'Not Adopted', 19, 6, 4);
+INSERT INTO Animals VALUES('Porky', 48, 5, 'Friendly', 1, 1, 'Female', 'Adopted', 20, 7, 5);
 
 EMPLOYEES
 INSERT INTO Employees VALUES ('Nick', 'Radtke', 'Nick', 'nick1234', 1, 'Rad@gmail.com');

@@ -494,7 +494,7 @@ namespace HumaneSociety
                     animal.PetFriendly = Convert.ToBoolean(column[5]);
                     animal.Gender = Convert.ToString(column[6]);
                     animal.AdoptionStatus = Convert.ToString(column[7]);
-                  
+                    AddAnimal(animal);
                 }
             }
         }               
