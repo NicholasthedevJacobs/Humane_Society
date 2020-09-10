@@ -268,7 +268,7 @@ namespace HumaneSociety
                 }
 
             }
-            db.Animals.InsertOnSubmit(animal);
+
             db.SubmitChanges();
         }
         internal static void RemoveAnimal(Animal animal)
