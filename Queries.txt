@@ -1,0 +1,56 @@
+**Reminder to Tony, that we did not initially get the queries checked, but 
+   that you looked over our tables in the SQL Management Studio.  
+
+   I went back through our slack messages to find the queries we sent to one 
+   another, just to have the file available in our repo.**
+   
+
+ADDRESSES
+INSERT INTO Addresses VALUES ('3702 N Morris BLVD', 'Milwaukee', 49, 53211);
+INSERT INTO Addresses VALUES ('3445 N Oakland Ave', 'Milwaukee', 49, 53211);
+INSERT INTO Addresses VALUES ('12345 Windy Road', 'Milwaukee', 49, 53211);
+INSERT INTO Addresses VALUES ('1452 Lake Drive', 'Milwaukee', 49, 53211);
+INSERT INTO Addresses VALUES ('5344 Ocean Way', 'Milwaukee', 49, 53211);
+
+CLIENTS
+INSERT INTO Clients VALUES ('Mike', 'O'Mally', 'EagleEye', 'Mikey1', 1, 'EagleEye@gmail.com');
+INSERT INTO Clients VALUES ('Katelynn', 'Brooks', 'Mustangs01', 'Texas', 1, 'TexasK@gmail.com');
+INSERT INTO Clients VALUES ('Eric', 'Marks', 'HolyIn1', 'Eric1', 3, 'Holy1@gmail.com');
+INSERT INTO Clients VALUES ('David', 'Strange', 'Dr.S', 'Davee', 4, 'Stranger@gmail.com');
+INSERT INTO Clients VALUES ('Juan', 'Vasques', 'YouJuan', 'juan', 5, 'Juanaknowme@gmail.com');
+
+ROOMS
+INSERT INTO Rooms VALUES (1, 1);
+INSERT INTO Rooms VALUES (2, 2);
+INSERT INTO Rooms VALUES (3, 3);
+INSERT INTO Rooms VALUES (4, 4);
+INSERT INTO Rooms VALUES (5, 5);
+INSERT INTO Rooms VALUES (6, null);
+INSERT INTO Rooms VALUES (7, null);
+INSERT INTO Rooms VALUES (8, null);
+INSERT INTO Rooms VALUES (9, null);
+INSERT INTO Rooms VALUES (10, null);
+
+ANIMALS
+INSERT INTO Animals VALUES('Buster', 35, 2, 'Friendly', 1, 1, 'Male', 'Not Adopted', 1, 2, 1);
+INSERT INTO Animals VALUES('Cat', 8, 7, 'Mean', 1, 0, 'Female', 'Adopted', 2, 4, 2);
+INSERT INTO Animals VALUES('Tweety', 1, 8, 'Friendly', 0, 1, 'Not Gendered', 'Not Adopted', 3, 5, 3);
+INSERT INTO Animals VALUES('Scalyguy', 4, 12, 'Friendly', 1, 1, 'Male', 'Not Adopted', 4, 6, 4);
+INSERT INTO Animals VALUES('Porky', 48, 5, 'Friendly', 1, 1, 'Female', 'Adopted', 5, 7, 5);
+
+EMPLOYEES
+INSERT INTO Employees VALUES ('Nick', 'Radtke', 'Nick', 'nick1234', 1, 'Rad@gmail.com');
+INSERT INTO Employees VALUES ('Nick', 'Jacobs', 'OtherNick', 'nick5678', 2, 'Awesome@gmail.com');
+INSERT INTO Employees VALUES ('Nevin', 'Seibel', 'NeverSayNevin', 'Seibel', 3, 'NevinS@gmail.com');
+INSERT INTO Employees VALUES ('Tony', 'Seichter', 'ToneBone', 'Seichter00', 4, 'TonyS@gmail.com');
+INSERT INTO Employees VALUES ('Vincent', 'Jackson', 'BO', 'BO1234', 34, 'BOknows@gmail.com');
+
+DIETPLANS
+INSERT INTO DietPlans VALUES ('Puppy Diet', 'Soft puppy kibble', 2);
+INSERT INTO DietPlans VALUES ('Dog Diet', 'Dry dog Kibble', 3);
+INSERT INTO DietPlans VALUES ('Kitten Diet', 'Wet food', 1);
+INSERT INTO DietPlans VALUES ('Cat Diet', 'Soft cat kibble', 2);
+INSERT INTO DietPlans VALUES ('Bird Diet', 'Mixed Seed', 1);
+INSERT INTO DietPlans VALUES ('Lizard Diet', 'Crickets', 3);
+INSERT INTO DietPlans VALUES ('Pigglet Diet', 'Swill', 4);
+INSERT INTO DietPlans VALUES ('Pig Diet', 'Swill', 8);
