@@ -280,7 +280,7 @@ namespace HumaneSociety
                 Console.WriteLine("No update has been made.");
                 return;
             }
-            foreach (KeyValuePair<int, string> update in updates)
+            foreach(KeyValuePair<int, string> update in updates)
             {
                 switch (update.Key)
                 {
@@ -320,7 +320,7 @@ namespace HumaneSociety
                 db.Animals.DeleteOnSubmit(animal);
                 db.SubmitChanges();
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 throw new Exception(e.Message);
             }
@@ -383,7 +383,7 @@ namespace HumaneSociety
             {
                 throw new Exception(e.Message);
             }
-        }      
+        }
         internal static int GetDietPlanId(string dietPlanName)
         {
             try
