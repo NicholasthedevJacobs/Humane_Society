@@ -460,15 +460,20 @@ namespace HumaneSociety
         {
             try
             {
+                AnimalShot animalShot = new AnimalShot();
+                animalShot.AnimalId = animal.AnimalId;
                 Shot shot = db.Shots.Where(a => a.Name == shotName).FirstOrDefault();
-                AnimalShot animalShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId && a.ShotId == shot.ShotId).FirstOrDefault();
+                //AnimalShot animalShots = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId && a.ShotId == shot.ShotId).FirstOrDefault();
+                animalShot.ShotId = shot.ShotId;
                 animalShot.DateReceived = DateTime.Now;
+
+                db.AnimalShots.InsertOnSubmit(animalShot);
                 db.SubmitChanges();
             }
             catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
-        }
+        } 
     }
 }
