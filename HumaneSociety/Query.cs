@@ -179,6 +179,11 @@ namespace HumaneSociety
             {
                 UpdateEmployeeQueries(employee, crudOperation);
             }
+            else
+            {
+                Console.WriteLine("Please enther valid input.");
+                //RunEmployeeQueries(employee, crudOperation);   **SHOULD WE INCLUDE RECURSION HERE?**NEVIN
+            }
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
         {
