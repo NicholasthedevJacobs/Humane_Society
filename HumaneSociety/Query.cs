@@ -268,7 +268,18 @@ namespace HumaneSociety
         }
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            Animal animal = GetAnimalByID(animalId);
+            Animal animal = null;
+            try
+            {
+                animal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                db.SubmitChanges();
+            }
+            catch(InvalidCastException e)
+            {
+                Console.WriteLine("No animals with that ID exist.");
+                Console.WriteLine("No update has been made.");
+                return;
+            }
             foreach(KeyValuePair<int, string> update in updates)
             {
                 switch (update.Key)
@@ -300,7 +311,6 @@ namespace HumaneSociety
                 }
 
             }
-
             db.SubmitChanges();
         }
         internal static void RemoveAnimal(Animal animal)
