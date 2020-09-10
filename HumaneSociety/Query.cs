@@ -209,10 +209,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> bf35de182d274563b01de98f7933a7edaa94c358
         internal static void ReadEmployeeQueries(Employee employee, string crudOperation)
         {
             try
@@ -312,7 +308,6 @@ namespace HumaneSociety
                         Console.WriteLine("Enter an appropriate value.");
                         break;
                 }
-
             }
             db.SubmitChanges();
         }
@@ -328,8 +323,7 @@ namespace HumaneSociety
             {
                 throw new Exception(e.Message);
             }
-        }
-        
+        }        
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
@@ -366,8 +360,6 @@ namespace HumaneSociety
             }
             return animalSearch;
         }
-         
-        // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
             try
@@ -380,7 +372,6 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         internal static Room GetRoom(int animalId)
         {
             try
@@ -392,8 +383,7 @@ namespace HumaneSociety
             {
                 throw new Exception(e.Message);
             }
-        }
-        
+        }      
         internal static int GetDietPlanId(string dietPlanName)
         {
             try
@@ -425,13 +415,11 @@ namespace HumaneSociety
                 throw new Exception(e.Message);
             }
         }
-
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
             IQueryable<Adoption> pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "pending");
             return pendingAdoptions;
         }
-
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
             try
@@ -472,7 +460,6 @@ namespace HumaneSociety
             IQueryable<AnimalShot> shots = db.AnimalShots.Where(a => a.Animal == animal);
             return shots;
         }
-
         internal static void UpdateShot(string shotName, Animal animal)
         {
             try
