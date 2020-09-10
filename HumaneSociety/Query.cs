@@ -303,8 +303,38 @@ namespace HumaneSociety
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            IQueryable<Animal> animals = db.Animals.Where(a => a.CategoryId == Convert.ToInt32(updates[1]) && a.Name == updates[2] && a.Age == Convert.ToInt32(updates[3]) && a.Demeanor == updates[4] && a.KidFriendly == Convert.ToBoolean(updates[5]) && a.PetFriendly == Convert.ToBoolean(updates[6]) && a.Weight == Convert.ToInt32(updates[7]));
-            return animals;
+            IQueryable<Animal> animalSearch = db.Animals;
+            foreach (KeyValuePair<int, string> update in updates)
+            {
+                switch (update.Key)
+                {
+                    case 1:
+                        animalSearch = animalSearch.Where(a => a.CategoryId == Convert.ToInt32(update.Value));
+                        break;
+                    case 2:
+                        animalSearch = animalSearch.Where(a => a.Name == update.Value);
+                        break;
+                    case 3:
+                        animalSearch = animalSearch.Where(a => a.Age == Convert.ToInt32(update.Value));
+                        break;
+                    case 4:
+                        animalSearch = animalSearch.Where(a => a.Demeanor == update.Value);
+                        break;
+                    case 5:
+                        animalSearch = animalSearch.Where(a => a.KidFriendly == Convert.ToBoolean(update.Value));
+                        break;
+                    case 6:
+                        animalSearch = animalSearch.Where(a => a.PetFriendly == Convert.ToBoolean(update.Value));
+                        break;
+                    case 7:
+                        animalSearch = animalSearch.Where(a => a.Weight == Convert.ToInt32(update.Value));
+                        break; 
+                    default:
+                        Console.WriteLine("Enter an appropriate value.");
+                        break;
+                }
+            }
+            return animalSearch;
         }
          
         // TODO: Misc Animal Things
