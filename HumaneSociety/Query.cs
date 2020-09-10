@@ -163,7 +163,7 @@ namespace HumaneSociety
 
 
         //// TODO Items: ////
-        
+
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
@@ -177,11 +177,11 @@ namespace HumaneSociety
             }
             else if (crudOperation == "read")
             {
-
+                ReadEmployeeQueries(employee, crudOperation);
             }
             else if (crudOperation == "update")
-            { 
-
+            {
+                UpdateEmployeeQueries(employee, crudOperation);
             }
         }
         internal static void CreateEmployeeQueries(Employee employee, string crudOperation)
@@ -202,6 +202,37 @@ namespace HumaneSociety
             {
                 Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
                 db.Employees.DeleteOnSubmit(employee);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        internal static void ReadEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                Console.WriteLine(employeeFromDB.FirstName + "\n" + employeeFromDB.LastName + "\n" + employeeFromDB.UserName + "\n" + employeeFromDB.Password + "\n" + employeeFromDB.EmployeeNumber + "\n" + employeeFromDB.Email);
+                db.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        internal static void UpdateEmployeeQueries(Employee employee, string crudOperation)
+        {
+            try
+            {
+                Employee employeeFromDB = db.Employees.Where(a => a.EmployeeId == employee.EmployeeId).FirstOrDefault();
+                employeeFromDB.FirstName = employee.FirstName;
+                employeeFromDB.LastName = employee.LastName;
+                employeeFromDB.UserName = employee.UserName;
+                employeeFromDB.UserName = employee.Password;
+                employeeFromDB.EmployeeNumber = employee.EmployeeNumber;
+                employeeFromDB.Email = employee.Email;
                 db.SubmitChanges();
             }
             catch (Exception e)
